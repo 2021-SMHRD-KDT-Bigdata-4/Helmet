@@ -9,12 +9,14 @@ DROP TABLE rent cascade;
 DROP TABLE point cascade;
 DROP TABLE rentalshop cascade;
 DROP TABLE helmetlocation cascade;
+DROP TABLE contactus cascade;
 
 select * from member;
 select * from helmet;
 select * from rent;
 select * from point;
 select * from rentalshop;
+select * from contactus;
 
 CREATE TABLE helmet (
     helmetid        VARCHAR(50) NOT NULL,
@@ -49,13 +51,13 @@ CREATE TABLE point (
 ALTER TABLE point ADD CONSTRAINT point_pk PRIMARY KEY ( pointid );
 
 CREATE TABLE rent (
-    rentid   int not null auto_increment primary key,
-    rentdate     datetime default now(),
+    rentid         int not null auto_increment primary key,
+    rentdate       datetime default now(),
 	rentplaceid    VARCHAR(50),
-    returndate   	datetime,
+    returndate     datetime,
     returnplaceid  VARCHAR(50), 
-    memberid     	VARCHAR(50) NOT NULL,
-    helmetid    	 VARCHAR(50) NOT NULL
+    memberid       VARCHAR(50) NOT NULL,
+    helmetid       VARCHAR(50) NOT NULL
 );
  
 
@@ -68,6 +70,18 @@ CREATE TABLE rentalshop (
 );
 ALTER TABLE rentalshop ADD CONSTRAINT rentalshop_pk PRIMARY KEY ( rentalshopid );
 
+CREATE TABLE contactus (
+    boardid        int not null auto_increment primary key,
+    memberid       VARCHAR(50) NOT NULL,
+    boardtitle     VARCHAR(100) NOT NULL,
+    boardcontent   VARCHAR(500) NOT NULL
+);
+
+insert into contactus(memberid, boardtitle, boardcontent) values('abc001', '섬들근린공원점 이용 잘했습니다 !', '안전모 정리가 잘되어있어서 넘 좋아요 자주 이용하겠습니다');
+insert into contactus(memberid, boardtitle, boardcontent) values('abc002', '잠실나들목에도 안전모 대여소 설치해주세요', '나들목 자주 가는데 가서 헬멧 쓰고 자전거 타고싶어요');
+insert into contactus(memberid, boardtitle, boardcontent) values('abc003', '안전모 없어요', '월드컵경기장점에 안전모가 없어요 ㅠㅠ 사이즈별로 구비 부탁드립니다 ~');
+insert into contactus(memberid, boardtitle, boardcontent) values('abc006', '고척돔에 대여소 설치 안되나요 ?', '콘서트 끝나면 지하철에 사람이 많아서 킥보드 이용하고 싶은데 안전모 대여소 거리가 머네요 ㅠㅠ 설치 고려 부탁드려요');
+insert into contactus(memberid, boardtitle, boardcontent) values('abc010', '안전모 대여소 좋네요', '헬멧 안들고 다녀도 돼서 편해요');
 
 ALTER TABLE helmet
     ADD CONSTRAINT helmet_rentalshop_fk FOREIGN KEY ( rentalshopid )
@@ -199,3 +213,5 @@ insert into point values('POINT007','abc008','2021-06-09',500,'',0);
 insert into point values('POINT008','abc001','2021-06-16',600,'',0);
 insert into point values('POINT009','abc001','2021-06-21',700,'',0);
 insert into point values('POINT010','abc001','0',0,'2021-06-30',5000);
+
+insert into contactus values()
