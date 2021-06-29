@@ -8,11 +8,13 @@ import kr.smhrd.web.controller_python;
 import kr.smhrd.web.plusController;
 import kr.smhrd.web.MemberUpdateController;
 import kr.smhrd.web.PointlistController;
+import kr.smhrd.web.PointlistController2;
 import kr.smhrd.web.RentalshoplistController;
 import kr.smhrd.web.ReserveController;
 import kr.smhrd.web.AmemberlistController;
 import kr.smhrd.web.ContactusController;
 import kr.smhrd.web.Controller;
+import kr.smhrd.web.DeleteController;
 import kr.smhrd.web.HelmetjoinController;
 import kr.smhrd.web.HelmetlistController;
 import kr.smhrd.web.HelmetrentlistController;
@@ -37,6 +39,8 @@ public class HandlerMapping {
 		mappings.put("/helmetjoin.go", new HelmetjoinController());
 		mappings.put("/contactus.go", new ContactusController());
 		mappings.put("/plus.go", new plusController());
+		mappings.put("/mypointlist2.go", new PointlistController2());
+		mappings.put("/mdelete.go", new DeleteController());
 	}
 
 	public Controller getController(String command) {

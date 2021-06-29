@@ -79,6 +79,13 @@ public class LoginDAO {
 		sqlSession.close();// 반납
 		return list;
 	}
+	public List<Point2VO> pointlist2(String memberid) {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		List<Point2VO> list = sqlSession.selectList("pointlist2", memberid);
+		sqlSession.close();// 반납
+		return list;
+	}
+	
 
 	public List<RentVO> rentlist(String memberid) {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
@@ -128,6 +135,17 @@ public class LoginDAO {
 		System.out.println("나와라얍!2");
 		sqlSession.commit();
 		sqlSession.close();
+		return cnt;
+	}
+	
+	public int memberDelete(String memberid) {
+		//문제의 딜리트...! 에러도 안나넹?!
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		System.out.println("디비연결 시작");
+		int cnt = sqlSession.delete("memberDelete", memberid); 
+		System.out.println("디비연결 종료");
+		sqlSession.commit();// 완료
+		sqlSession.close();// 반납
 		return cnt;
 	}
 }

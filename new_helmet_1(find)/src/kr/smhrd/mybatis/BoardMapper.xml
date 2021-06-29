@@ -20,6 +20,11 @@
 		values(#{rentplaceid},#{memberid},#{helmetid})
 	</insert>
 
+	<delete id="memberDelete" >
+        delete from member where memberid = #{memeberid}
+     </delete>
+	
+	
 	<update id="returnUpdate" parameterType="rentVO">
 		update rent set
 		returndate = now(), returnplaceid = #{returnplaceid} where
@@ -40,6 +45,11 @@
 		from point p where
 		p.memberid=#{memberid}
 	</select>
+	
+	<select id="pointlist2" resultType="point2VO">
+		select p2.earndate2,p2.earnpoint2,p2.useddate2,p2.usedpoint2 from point2 p2 where p2.memberid2=#{memberid}
+	</select>
+	
 
 	<select id="rentlist" resultType="rentVO">
 		select r.helmetid,

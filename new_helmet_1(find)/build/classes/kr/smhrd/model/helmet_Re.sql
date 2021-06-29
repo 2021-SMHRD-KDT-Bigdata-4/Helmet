@@ -135,6 +135,9 @@ insert into member values('abc019', '이상준', '57','nfgsa','010-7652-6828');
 insert into member values('abc020', '김성은', '20','dsfdh','010-3578-6452');
 
 
+
+
+
 insert into rentalshop values('1204','거여역 3번출구','서울특별시 송파구 오금로 지하 499','37.4933429999999','127.14473');
 insert into rentalshop values('1207','마천CU우방점 앞','서울특별시 송파구 성내천로 233','37.499756','127.152504');
 insert into rentalshop values('1212','송파역 2번 출구앞','서울특별시 송파구 송파대로 지하 354','37.499413','127.112868999999');

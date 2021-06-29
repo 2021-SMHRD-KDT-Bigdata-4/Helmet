@@ -71,6 +71,22 @@ function amemberlist(data) {
        $("#memberlist").append(view); 
     } 
     
+function delBtn(memberid){
+	   if(confirm("정말로 삭제 하시겠습니까?")==true){
+	      $.ajax({
+	         url : "mdelete.go",
+	         type : "get",
+	         data : {"memberid" :memberid},
+	         success : amemberlist,
+	         error : function(){alert("error");}    
+	      });
+	      } else{
+	      return false;
+	      }
+	}
+
+    
+    
 function loginFn() {
 	var memberid = $("#id").val();
 	var password = $("#pw").val();
@@ -168,7 +184,7 @@ function logoutFn() {
 			<section class="tm-banner">
 				<div class="tm-container-outer tm-banner-bg-mypage">
 					<div>
-						<form action="helmet.jsp" method="get"
+						<form  method="get"
 							class="tm-search-form-join tm-section-pad-3" id="mypage">
 							<form>
 								<div class="form-row-main tm-search-form-row">

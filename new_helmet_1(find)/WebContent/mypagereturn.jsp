@@ -155,7 +155,7 @@
 							<li class="nav-item"><a class="nav-link" href="mypage.jsp">내
 									정보</a></li>
 							<li class="nav-item"><a class="nav-link active"
-								href="mypage2.jsp">포인트 관리 <span class="sr-only">(current)</span>
+								href="mypagePoint2.jsp">포인트 관리 <span class="sr-only">(current)</span>
 							</a></li>
 							<li class="nav-item"><a class="nav-link" href="mypage3.jsp">대여
 									내역</a></li>

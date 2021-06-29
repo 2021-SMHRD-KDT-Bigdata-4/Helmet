@@ -7,6 +7,7 @@
 	<typeAliases>
 		<typeAlias type="kr.smhrd.model.LoginVO" alias="loginVO" />
 		<typeAlias type="kr.smhrd.model.PointVO" alias="pointVO" />
+		<typeAlias type="kr.smhrd.model.Point2VO" alias="point2VO" />
 		<typeAlias type="kr.smhrd.model.RentVO" alias="rentVO" />
 	   <typeAlias type="kr.smhrd.model.HelmetVO" alias="helmetVO" />
 	   <typeAlias type="kr.smhrd.model.RentalshopVO" alias="rentalshopVO" />

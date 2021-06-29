@@ -8,7 +8,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>명탐정 코딩 아좌좌</title>
+<title>포인트 관리</title>
 
 <!-- load stylesheets -->
 <link rel="stylesheet"
@@ -23,32 +23,75 @@
 <link rel="stylesheet" type="text/css" href="slick/slick.css" />
 <link rel="stylesheet" type="text/css" href="slick/slick-theme.css" />
 <link rel="stylesheet" href="css/templatemo-style.css">
-
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
-	function loginFn() {
-		var memberid = $("#id").val();
-		var password = $("#pw").val();
-		$.ajax({
-			url : "loginCheck.go",
-			type : "post",
-			data : {
-				"memberid" : memberid,
-				"password" : password
-			},
-			success : function(data) {
-				if (data == "NO") {
-					alert("로그인에 실패하였습니다.");
-				} else {
-					location.href = "main.jsp";
-					alert("로그인 성공 !")
-				}
-			},
-			error : function() {
-				alert("error");
-			}
-		});
-	}
 
+	   $(document).ready(()=>{
+		   mypointlistFn();
+		});
+
+	   var memberid='${sessionScope.loginVO.memberid}';
+	   
+	   function mypointlistFn(){
+	         $.ajax({
+	            url : "mypointlist.go",
+	            type : "get",
+	            data : { "memberid" : memberid},
+	            success : mypointlist,
+	            dataType : "json",
+	            error : function() {
+	               alert("errormypointlist");
+	            }
+	         });
+	      }
+
+	   function mypointlist(data) {
+	         var view=" ";
+	         view+="<table table class='table table-hover' align=center width=900px class='tabledesign' id='mypage' table-layout='fixed'>";
+	         view+="<tr>";
+	         view+="<td>적립일</td>";
+	         view+="<td>적립포인트</td>";
+	         view+="<td>사용일</td>";
+	         view+="<td>사용포인트</td>";
+	         view+="</tr>";
+	         $.each(data,(index,obj) =>{
+	             view += "<tr>";
+	             view += "<td>" + obj.earndate + "</td>";
+	             view += "<td>" + obj.earnpoint + "</td>";
+	             view += "<td>" + obj.useddate + "</td>";
+	             view += "<td>" + obj.usedpoint + "</td>";
+	             view += "</tr>";
+	         });
+	          view+="</table>";
+	          $("#mypage2").append(view); 
+	       }                             
+	   function loginFn() {
+			var memberid = $("#id").val();
+			var password = $("#pw").val();
+			$.ajax({
+				url : "loginCheck.go",
+				type : "post",
+				data : {
+					"memberid" : memberid,
+					"password" : password
+				},
+				success : function(data) {
+					if (data == "NO") {
+						alert("로그인에 실패하였습니다.");
+					} else {
+						location.href = "main.jsp";
+						alert("로그인 성공 !")
+					}
+				},
+				error : function() {
+					alert("error");
+				}
+			});
+		}
 	function logoutFn() {
 		$.ajax({
 			url : "logoutCheck.go",
@@ -62,22 +105,13 @@
 			}
 		});
 	}
-	function updateFn() {
-		var formData = $("#mypage").serialize();
-		$.ajax({
-			url : "memberupdate.go",
-			type : "post",
-			data : formData,
-			success : function() {
-				location.href = "mypage.jsp";
-				alert("성공");
-			},
-			error : function() {
-				alert("error");
-			}
-		});
+	
+	function usePoint(){
+		alert("버튼완료");
+		location.href = "mypage_chechpoint2.jsp";
 	}
 </script>
+
 </head>
 <body>
 
@@ -121,7 +155,7 @@
 							<li class="nav-item"><a class="nav-link" href="mypage.jsp">내
 									정보</a></li>
 							<li class="nav-item"><a class="nav-link active"
-								href="mypagePoint2.jsp">포인트 관리 <span class="sr-only">(current)</span>
+								href="mypage2.jsp">포인트 관리 <span class="sr-only">(current)</span>
 							</a></li>
 							<li class="nav-item"><a class="nav-link" href="mypage3.jsp">대여
 									내역</a></li>
@@ -136,58 +170,57 @@
 				<div class="tm-container-outer tm-banner-bg-mypage">
 					<div>
 
-						<form action="helmet.jsp" method="get"
+						<form action="main.jsp" method="get"
 							class="tm-search-form-member tm-section-pad-3" id="mypage">
-							<form>
-								<div class="form-row1 tm-search-form-row">
-									<div
-										class="form-group tm-form-group1 tm-form-group-pad tm-form-group-1">
-										<label for="inputCity">ID</label> <input name="memberid"
-											readonly="readonly" type="text" class="form-control"
-											id="memberid" value="${sessionScope.loginVO.memberid}">
-									</div>
-									<div
-										class="form-group tm-form-group1 tm-form-group-pad tm-form-group-1">
-										<label for="inputCity">Password</label> <input name="password"
-											type="text" class="form-control" id="password"
-											value="${sessionScope.loginVO.password}">
-									</div>
-									<div
-										class="form-group tm-form-group1 tm-form-group-pad tm-form-group-1">
-										<label for="inputCity">Name</label> <input name="membername"
-											type="text" class="form-control" id="membername"
-											value="${sessionScope.loginVO.membername}">
-									</div>
-									<div
-										class="form-group tm-form-group1 tm-form-group-pad tm-form-group-1">
-										<label for="inputCity">Age</label> <input name="memberage"
-											type="text" class="form-control" id="memberage"
-											value="${sessionScope.loginVO.memberage}">
-									</div>
-									<div
-										class="form-group tm-form-group1 tm-form-group-pad tm-form-group-1">
-										<label for="inputCity">Phone</label> <input name="memberphone"
-											type="text" class="form-control" id="memberphone"
-											value="${sessionScope.loginVO.memberphone}">
-									</div>
-									<div class="form-group tm-form-group tm-form-group-1"></div>
-								</div>
-							</form>
-							<div class="form-row tm-search-form-row">
-								<div
-									class="form-group tm-form-group tm-form-group-pad tm-form-group-2">
-									<label for="btnSubmit">&nbsp;</label>
-									<button type="submit"
-										class="btn btn-primary tm-btn tm-btn-search text-uppercase"
-										id="btnSubmit" onclick="updateFn()">수정</button>
-									<button type="submit"
-										class="btn btn-primary tm-btn tm-btn-search text-uppercase"
-										id="btnSubmit" onclick="loginFn()">취소</button>
-								</div>
+							<div class="form-row-main tm-search-form-row">
+								<div id="mypage2"></div>
+
 							</div>
+
 						</form>
+						<div>
+							<div id="pntshow11">
+								<table class="tbl">
+									<colgroup>
+										<col width="100px" />
+										<col width="*" />
+									</colgroup>
+									<tbody>
+										<tr>
+											<td>잔여포인트</td>
+											<td id="change"><input value ='27400'></td>
+										</tr>
+										<tr>
+											<th>결제금액</th>
+											<td></section>
+													<div class="form-group tm-name-container">
+														<select class="form-control" id="pnt" name="pnt">
+															<option value="">포인트 교환</option>
+															<option value="5000">5000원</option>
+															<option value="10000">10000원</option>
+															<option value="15000">15000원</option>
+															<option value="20000">20000원</option>
+															<option value="50000">50000원</option>
+														</select></td>
+
+											</div>
+										</tr>
+									</tbody>
+
+								</table>
+							</div>
+
+							<button type="button"
+								class="btn btn-primary tm-btn tm-btn-search text-uppercase"
+								id="btnpoint" onclick="usePoint()">포인트 사용하기</button>
+						</div>
+
+
+
 					</div>
 				</div>
+
+
 			</section>
 			<section class="p-5 tm-container-outer tm-bg-gray">
 				<div class="container">
