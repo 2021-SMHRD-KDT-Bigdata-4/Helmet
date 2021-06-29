@@ -26,7 +26,6 @@
 <link rel="stylesheet" href="css/templatemo-style.css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
-
 	function loginFn() {
 		var memberid = $("#id").val();
 		var password = $("#pw").val();
@@ -204,52 +203,18 @@
 						<div id="mainNav" class="collapse navbar-collapse tm-bg-white">
 							<ul class="navbar-nav ml-auto">
 
-								<c:if test="${sessionScope.loginVO==null}">
-									<li class="nav-item"><a class="nav-link active"
-										href="#top">Login <span class="sr-only">(current)</span>
-									</a></li>
-									<li class="nav-item"><a class="nav-link active"
-										href="#top" id="joinbtn">Join <span class="sr-only">(current)</span>
-									</a></li>
-									<li class="nav-item"><a class="nav-link"
-										href="#tm-section-1.5">Place</a></li>
-									<li class="nav-item"><a class="nav-link"
-										href="#tm-section-2.5">Rent</a></li>
-									<li class="nav-item"><a class="nav-link"
-										href="#tm-section-4">Contact Us</a></li>
-								</c:if>
+								<li class="nav-item"><a class="nav-link" href="#"
+									onclick="logoutFn()">Logout</a></li>
+								<li class="nav-item"><a class="nav-link active"
+									href="mypage.jsp">Mypage <span class="sr-only">(current)</span>
+								</a></li>
+								<li class="nav-item"><a class="nav-link"
+									href="#tm-section-2">Place</a></li>
+								<li class="nav-item"><a class="nav-link"
+									href="#tm-section-2.5">Rent</a></li>
+								<li class="nav-item"><a class="nav-link"
+									href="#tm-section-4">Contact Us</a></li>
 
-								<c:if
-									test="${sessionScope.loginVO!=null && sessionScope.loginVO.memberid==\"admin\"}">
-									<li class="nav-item"><a class="nav-link" href="#"
-										onclick="logoutFn()">Logout</a></li>
-									<li class="nav-item"><a class="nav-link active"
-										href="adminpage2.jsp">Mypage <span class="sr-only">(current)</span>
-									</a></li>
-									<li class="nav-item"><a class="nav-link"
-										href="#tm-section-2">Place</a></li>
-									<li class="nav-item"><a class="nav-link"
-										href="#tm-section-2.5">Rent</a></li>
-									<li class="nav-item"><a class="nav-link"
-										href="#tm-section-4">Contact Us</a></li>
-
-								</c:if>
-
-								<c:if
-									test="${sessionScope.loginVO!=null && sessionScope.loginVO.memberid!=\"admin\"}">
-									<li class="nav-item"><a class="nav-link" href="#"
-										onclick="logoutFn()">Logout</a></li>
-									<li class="nav-item"><a class="nav-link active"
-										href="mypage.jsp">Mypage <span class="sr-only">(current)</span>
-									</a></li>
-									<li class="nav-item"><a class="nav-link"
-										href="#tm-section-1.5">Place</a></li>
-									<li class="nav-item"><a class="nav-link"
-										href="#tm-section-2.5">Rent</a></li>
-									<li class="nav-item"><a class="nav-link"
-										href="#tm-section-4">Contact Us</a></li>
-
-								</c:if>
 							</ul>
 						</div>
 					</nav>
@@ -286,6 +251,7 @@
 							<!-- 여기에 넣음 -->
 							<div class="row tm-banner-row" id="tm-section-search">
 
+								<!-- 여기부터 지움 -->
 								<form action="main.jsp" method="get"
 									class="tm-search-form tm-section-pad-2">
 									<div class="form-row tm-search-form-row">
@@ -309,7 +275,7 @@
 										<div
 											class="form-group tm-form-group tm-form-group-pad tm-form-group-login">
 											<label for="btnSubmit">&nbsp;</label>
-											<button type="button"
+											<button type="submit"
 												class="btn btn-primary tm-btn tm-btn-search-login text-uppercase"
 												id="btnSubmit" onclick="loginFn()">Login</button>
 										</div>
@@ -318,8 +284,6 @@
 
 							</div>
 						</c:if>
-
-
 						<div class="tm-banner-overlay"></div>
 					</div>
 				</div>
@@ -1547,9 +1511,9 @@
 						for (var i = 0, ii = latitude.length; i < ii; i++) {
 							if (rank[i] == 1) {
 								// 마커 이미지의 이미지 주소입니다
-								var imageSrc = "img/헬멧마커1.png";
+								var imageSrc = "img/헬멧마커.png";
 							} else {
-								var imageSrc = "img/헬멧마커2.png";
+								var imageSrc = "img/헬멧마커추천.png";
 							}
 
 							// 마커 이미지의 이미지 크기 입니다
@@ -1703,7 +1667,7 @@
 							<textarea id="contact_message" name="contact_message"
 								class="form-control-23" rows="9" placeholder="Message" required></textarea>
 						</div>
-						<button type="button"
+						<button type="submit"
 							class="btn btn-primary tm-btn-primary tm-btn-send text-uppercase"
 							onclick="contactbtnFn()">Send Message Now</button>
 					</form>

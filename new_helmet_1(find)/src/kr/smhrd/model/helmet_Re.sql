@@ -40,24 +40,26 @@ CREATE TABLE member (
 ALTER TABLE member ADD CONSTRAINT member_pk PRIMARY KEY ( memberid );
 
 CREATE TABLE point (
-    pointid    VARCHAR(50) NOT NULL,
+    pointid    INTEGER NOT NULL auto_increment,
     memberid   VARCHAR(50) NOT NULL,
     earndate   VARCHAR(50) NOT NULL,   
     earnpoint  int NOT NULL,
     useddate   VARCHAR(50),
-    usedpoint  int
+    usedpoint  int,
+    primary key(pointid)
   
 );
-ALTER TABLE point ADD CONSTRAINT point_pk PRIMARY KEY ( pointid );
 
 CREATE TABLE rent (
-    rentid         int not null auto_increment primary key,
-    rentdate       datetime default now(),
-	rentplaceid    VARCHAR(50),
-    returndate     datetime,
-    returnplaceid  VARCHAR(50), 
-    memberid       VARCHAR(50) NOT NULL,
-    helmetid       VARCHAR(50) NOT NULL
+    rentid   int not null auto_increment primary key,
+    rentdate     datetime NOT NULL  default now(),
+    rentplaceId    VARCHAR(50) NOT NULL,
+    rentplaceName    VARCHAR(50) NOT NULL,
+    returndate   datetime,
+    returnplaceId  VARCHAR(50), 
+    returnplaceName  VARCHAR(50),
+    memberid     VARCHAR(50) NOT NULL,
+    helmetid     VARCHAR(50) NOT NULL
 );
  
 
@@ -177,41 +179,40 @@ insert into helmet values('L-018','L',0,'2020-04-06',1,'1241');
 insert into helmet values('L-019','L',0,'2020-04-22',1,'2628');
 insert into helmet values('L-020','L',0,'2020-06-22',0,'1204');
 
-
-insert into rent(rentdate,rentplaceId,memberid,helmetid)
-values('2021-06-01 07:22:14', '1204','abc001','M-010');
-insert into rent(rentdate,rentplaceId,memberid,helmetid)
-values('2021-06-01 15:52:43', '1207', 'abc002', 'S-004');
-insert into rent(rentdate,rentplaceId,memberid,helmetid)
-values('2021-06-02 10:39:40', '1212','abc001', 'M-014');
-insert into rent(rentdate,rentplaceId,memberid,helmetid)
-values('2021-06-02 07:30:31', '2625', 'abc004', 'L-018');
-insert into rent(rentdate,rentplaceId,memberid,helmetid)
-values('2021-06-03 09:19:30', '1249', 'abc001', 'M-013');
-insert into rent(rentdate,rentplaceId,memberid,helmetid)
-values('2021-06-03 15:29:21', '1206','abc005', 'M-010');
-insert into rent(rentdate,rentplaceId,memberid,helmetid)
-values('2021-06-04 07:12:20', '1217', 'abc002', 'S-003');
-insert into rent(rentdate,rentplaceId,memberid,helmetid)
-values('2021-06-04 23:04:39', '1204', 'abc008', 'S-002');
-insert into rent(rentdate,rentplaceId,memberid,helmetid)
-values('2021-06-06 10:59:49', '1212', 'abc001', 'M-012');
-insert into rent(rentdate,rentplaceId,memberid,helmetid)
-values('2021-06-07 13:45:15', '1249', 'abc001', 'M-012');
-insert into rent(rentdate,rentplaceId,memberid,helmetid)
-values('2021-06-08 11:23:50', '2603', 'abc011', 'M-010');
-
+insert into rent(rentdate,rentplaceId,rentplaceName,returndate,returnplaceId, returnplacename, memberid,helmetid)
+values('2021-06-01 07:22:14','1204','거여역 3번출구','2021-06-01 08:40:49','1207','마천CU우방점 앞','abc001','M-010');
+insert into rent(rentdate,rentplaceId,rentplaceName,returndate,returnplaceId, returnplacename, memberid,helmetid)
+values('2021-06-01 15:52:43', '1207', '마천CU우방점 앞','2021-06-01 16:24:12', '1212' ,'송파역 2번 출구앞','abc002', 'S-004');
+insert into rent(rentdate,rentplaceId,rentplaceName,returndate,returnplaceId, returnplacename, memberid,helmetid)
+values('2021-06-02 10:39:40', '1212', '송파역 2번 출구앞','2021-06-02 10:59:23', '2601' , '석촌호수 서호사거리', 'abc001', 'M-014');
+insert into rent(rentdate,rentplaceId,rentplaceName,returndate,returnplaceId, returnplacename, memberid,helmetid)
+values('2021-06-02 07:30:31', '2625', '가락1동 주민센터', '2021-06-02 08:12:59', '1232', '롯데마트 주차장 옆', 'abc004','L-018');
+insert into rent(rentdate,rentplaceId,rentplaceName,returndate,returnplaceId, returnplacename, memberid,helmetid)
+values('2021-06-03 09:19:30', '1249', '아주중학교건너편','2021-06-03 09:34:39', '2622' , '올림픽공원역 3번출구', 'abc001', 'M-013');
+insert into rent(rentdate,rentplaceId,rentplaceName,returndate,returnplaceId, returnplacename, memberid,helmetid)
+values('2021-06-03 15:29:21', '1206', '9호선종합운동장역 9번출구','2021-06-03 15:53:34', '2654' ,'올림픽선수촌아파트 136동 앞', 'abc005', 'M-010');
+insert into rent(rentdate,rentplaceId,rentplaceName,returndate,returnplaceId, returnplacename, memberid,helmetid)
+values('2021-06-04 07:12:20', '1217', '송파파인타운 7단지','2021-06-04 07:50:45', '1221' ,'삼전사거리 포스코더샵', 'abc002', 'S-003');
+insert into rent(rentdate,rentplaceId,rentplaceName,returndate,returnplaceId, returnplacename, memberid,helmetid)
+values('2021-06-04 23:04:39', '1204', '거여역 3번출구','2021-06-04 23:44:14', '1232' ,'롯데마트 주차장 옆','abc008', 'S-002');
+insert into rent(rentdate,rentplaceId,rentplaceName,returndate,returnplaceId, returnplacename, memberid,helmetid)
+values('2021-06-06 10:59:49', '1212', '송파역 2번 출구앞','2021-06-06 14:12:34', '1241' ,'문정 법조단지5', 'abc001', 'M-012');
+insert into rent(rentdate,rentplaceId,rentplaceName,returndate,returnplaceId, returnplacename, memberid,helmetid)
+values('2021-06-07 13:45:15', '1249', '아주중학교건너편','2021-06-07 14:10:32', '2628' ,'문정역 1번출구','abc001', 'M-012');
+insert into rent(rentdate,rentplaceId,rentplaceName,returndate,returnplaceId, returnplacename, memberid,helmetid)
+values('2021-06-08 11:23:50', '2603', '송파 글마루 도서관','2021-06-08 11:54:10', '1213' ,'백토공원 앞','abc011', 'M-010');
 
 
-insert into point values('POINT001','abc001','2021-06-01',700,'',0);
-insert into point values('POINT002','abc019','2021-06-01',700,'',0);
-insert into point values('POINT003','abc001','2021-06-02',1000,'',0);
-insert into point values('POINT004','abc001','2021-06-03',1500,'',0);
-insert into point values('POINT005','abc001','2021-06-06',500,'',0);
-insert into point values('POINT006','abc012','2021-06-08',100,'',0);
-insert into point values('POINT007','abc008','2021-06-09',500,'',0);
-insert into point values('POINT008','abc001','2021-06-16',600,'',0);
-insert into point values('POINT009','abc001','2021-06-21',700,'',0);
-insert into point values('POINT010','abc001','0',0,'2021-06-30',5000);
+
+insert into point values('1','abc001','2021-06-01',700,'',0);
+insert into point values('2','abc019','2021-06-01',700,'',0);
+insert into point values('3','abc001','2021-06-02',1000,'',0);
+insert into point values('4','abc001','2021-06-03',1500,'',0);
+insert into point values('5','abc001','2021-06-06',500,'',0);
+insert into point values('6','abc012','2021-06-08',100,'',0);
+insert into point values('7','abc008','2021-06-09',500,'',0);
+insert into point values('8','abc001','2021-06-16',600,'',0);
+insert into point values('9','abc001','2021-06-21',700,'',0);
+insert into point values('10','abc001','0',0,'2021-06-30',5000);
 
 insert into contactus values()

@@ -154,6 +154,8 @@
 							</a></li>
 							<li class="nav-item"><a class="nav-link" href="mypage3.jsp">대여
 									내역</a></li>
+							<li class="nav-item"><a class="nav-link"
+								href="mypagereturn.jsp">헬멧 반납 </a></li>
 						</ul>
 					</div>
 				</div>
@@ -164,12 +166,10 @@
 					<div>
 
 						<form action="helmet.jsp" method="get"
-							class="tm-search-form-join tm-section-pad-3" id="mypage">
+							class="tm-search-form-member tm-section-pad-3" id="mypage">
 							<div class="form-row-main tm-search-form-row">
 								<div id="mypage2"></div>
 							</div>
-
-
 						</form>
 
 					</div>

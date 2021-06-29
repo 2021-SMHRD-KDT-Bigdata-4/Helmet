@@ -10,28 +10,29 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 
-import kr.smhrd.model.HelmetVO;
 import kr.smhrd.model.LoginDAO;
 import kr.smhrd.model.PointVO;
+import kr.smhrd.model.RentVO;
 
-public class HelmetlistController implements Controller {
+public class plusController implements Controller {
 
 	@Override
 	public String requestHandler(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		System.out.println("접속성공?");
-		LoginDAO dao = new LoginDAO();
-		List<HelmetVO> list = dao.helmetlist();
+		String memberid = request.getParameter("memberid");
 
-		Gson g = new Gson();
-		String hlist = g.toJson(list);
-		System.out.println(hlist);
+		PointVO vo = new PointVO();
+		vo.setMemberid(memberid);
+
+		LoginDAO dao = new LoginDAO();
+
+		int cnt = dao.pointPlus(vo);
+
 		PrintWriter out = response.getWriter();
-		out.println(hlist);
+		out.println(cnt);
 
 		return null;
-
 	}
 
 }

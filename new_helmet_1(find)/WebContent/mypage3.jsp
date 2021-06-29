@@ -50,27 +50,28 @@
 	      }
 
 	   function helmetrentlist(data) {
-	         var view=" ";
-	         view+="<table table class='table table-hover' align=center width=900px class='tabledesign' id='mypage' table-layout='fixed'>";
-	         view+="<tr>";
-	         view+="<td>안전모ID</td>";
-	         view+="<td>대여일자</td>";
-	         view+="<td>대여장소</td>";
-	         view+="<td>반납일자</td>";
-	         view+="<td>반납장소</td>";
-	         view+="</tr>";
-	         $.each(data,(index,obj) =>{
-	             view += "<tr>";
-	             view += "<td>" + obj.helmetid + "</td>";
-	             view += "<td>" + obj.rentdate + "</td>";
-	             view += "<td>" + obj.rentplacename + "</td>";
-	             view += "<td>" + obj.returnplacename + "</td>";
-	             view += "<td>" + obj.returndate + "</td>";
-	             view += "</tr>";
-	         });
-	          view+="</table>";
-	          $("#helmetrent").append(view); 
-	       }   
+           var view=" ";
+           view+="<table table class='table table-hover' align=center width=900px class='tabledesign' id='mypage' table-layout='fixed'>";
+           view+="<tr>";
+           view+="<td>안전모ID</td>";
+           view+="<td>대여일자</td>";
+           view+="<td>대여장소</td>";
+           view+="<td>반납일자</td>";
+           view+="<td>반납장소</td>";
+           view+="</tr>";
+           $.each(data,(index,obj) =>{
+               view += "<tr>";
+               view += "<td>" + obj.helmetid + "</td>";
+               view += "<td>" + obj.rentdate + "</td>";
+               view += "<td>" + obj.rentplaceid + "</td>";
+               view += "<td>" + obj.returndate + "</td>";
+               view += "<td>" + obj.returnplaceid + "</td>";
+               view += "</tr>";
+           });
+            view+="</table>";
+            $("#helmetrent").append(view); 
+         }   
+  
 	   
 	   function loginFn() {
 			var memberid = $("#id").val();
@@ -95,6 +96,7 @@
 				}
 			});
 		}
+	   
 	function logoutFn() {
 		$.ajax({
 			url : "logoutCheck.go",
@@ -156,6 +158,8 @@
 							</a></li>
 							<li class="nav-item"><a class="nav-link" href="mypage3.jsp">대여
 									내역</a></li>
+							<li class="nav-item"><a class="nav-link"
+								href="mypagereturn.jsp">헬멧 반납 </a></li>
 						</ul>
 					</div>
 				</div>
@@ -165,12 +169,13 @@
 				<div class="tm-container-outer tm-banner-bg-mypage">
 					<div>
 
-						<form action="helmet.jsp" method="get"
-							class="tm-search-form-join tm-section-pad-3" id="mypage">
-							<div class="form-row-main tm-search-form-row">
-								<div id="helmetrent"></div>
-							</div>
-
+						<form method="get" class="tm-search-form-member tm-section-pad-3"
+							id="mypage">
+							<form>
+								<div class="form-row-main tm-search-form-row">
+									<div id="helmetrent"></div>
+								</div>
+							</form>
 							<div class="form-row tm-search-form-row">
 								<div
 									class="form-group tm-form-group tm-form-group-pad tm-form-group-2">

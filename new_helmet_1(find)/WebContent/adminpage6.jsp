@@ -8,7 +8,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>대여소별 안전모 현황</title>
+<title>고객의 소리</title>
 
 <!-- load stylesheets -->
 <link rel="stylesheet"
@@ -31,81 +31,79 @@
 <script type="text/javascript">
 
 $(document).ready(()=>{
-	   mypointlistFn();
+	contactusFn();
 	});
 
-var memberid='${sessionScope.loginVO.memberid}';
-
-function mypointlistFn(){
+function contactusFn(){
       $.ajax({
-         url : "mypointlist.go",
+         url : "contactus.go",
          type : "get",
-         data : { "memberid" : memberid},
-         success : mypointlist,
+         success : contactuslist,
          dataType : "json",
          error : function() {
-            alert("errormypointlist");
+            alert("error");
          }
       });
    }
 
-function mypointlist(data) {
+function contactuslist(data) {
       var view="<table table class='table table-hover' align=center width=900px class='tabledesign' id='mypage' table-layout='fixed'>";
       view+="<tr>";
-      view+="<td>적립일</td>";
-      view+="<td>적립포인트</td>";
-      view+="<td>사용일</td>";
-      view+="<td>사용포인트</td>";
+      view+="<td>번호</td>";
+      view+="<td>제목</td>";
+      view+="<td>내용</td>";
+      view+="<td>작성자</td>";
       view+="</tr>";
       $.each(data,(index,obj) =>{
           view += "<tr>";
-          view += "<td>" + obj.earndate + "</td>";
-          view += "<td>" + obj.earnpoint + "</td>";
-          view += "<td>" + obj.useddate + "</td>";
-          view += "<td>" + obj.usedpoint + "</td>";
+          view += "<td>" + obj.boardid + "</td>";
+          view += "<td>" + obj.boardtitle + "</td>";
+          view += "<td>" + obj.boardcontent + "</td>";
+          view += "<td>" + obj.memberid + "</td>";
           view += "</tr>";
       });
-       view+="</table>";
-       $("#mypage2").append(view); 
-    }                             
+      view+="</table>";
+      $("#contactuslist").append(view); 
+   } 
+   
     
-	function loginFn() {
-		var memberid = $("#id").val();
-		var password = $("#pw").val();
-		$.ajax({
-			url : "loginCheck.go",
-			type : "post",
-			data : {
-				"memberid" : memberid,
-				"password" : password
-			},
-			success : function(data) {
-				if (data == "NO") {
-					alert("로그인에 실패하였습니다.");
-				} else {
-					location.href = "main.jsp";
-					alert("로그인 성공 !")
-				}
-			},
-			error : function() {
-				alert("error");
-			}
-		});
-	}
-
-	function logoutFn() {
-		$.ajax({
-			url : "logoutCheck.go",
-			type : "get",
-			success : function() {
+function loginFn() {
+	var memberid = $("#id").val();
+	var password = $("#pw").val();
+	$.ajax({
+		url : "loginCheck.go",
+		type : "post",
+		data : {
+			"memberid" : memberid,
+			"password" : password
+		},
+		success : function(data) {
+			if (data == "NO") {
+				alert("로그인에 실패하였습니다.");
+			} else {
 				location.href = "main.jsp";
-				alert("로그아웃 완료 !")
-			},
-			error : function() {
-				alert("error");
+				alert("로그인 성공 !")
 			}
-		});
-	}
+		},
+		error : function() {
+			alert("error");
+		}
+	});
+}
+
+function logoutFn() {
+	$.ajax({
+		url : "logoutCheck.go",
+		type : "get",
+		success : function() {
+			location.href = "main.jsp";
+			alert("로그아웃 완료 !")
+		},
+		error : function() {
+			alert("error");
+		}
+	});
+}
 </script>
 </head>
 <body>
@@ -130,7 +128,7 @@ function mypointlist(data) {
 								<li class="nav-item"><a class="nav-link" href="#"
 									onclick="logoutFn()">Logout</a></li>
 								<li class="nav-item"><a class="nav-link active"
-									href="adminmypage.jsp">Mypage <span class="sr-only">(current)</span>
+									href="adminpage.jsp">Mypage <span class="sr-only">(current)</span>
 								</a></li>
 								<li class="nav-item"><a class="nav-link" href="main.jsp">Place</a></li>
 								<li class="nav-item"><a class="nav-link" href="main.jsp">Rent</a></li>
@@ -147,8 +145,6 @@ function mypointlist(data) {
 				<div class="row tm-banner-row-mypage tm-banner-row-header-mypage">
 					<div class="tm-banner-header-mypage">
 						<ul class="navbar-nav-mypage ml-auto">
-							<li class="nav-item"><a class="nav-link"
-								href="adminpage.jsp">대여소별 안전모 현황</a></li>
 							<li class="nav-item"><a class="nav-link active"
 								href="adminpage2.jsp">대여소 관리 <span class="sr-only">(current)</span>
 							</a></li>
@@ -158,6 +154,8 @@ function mypointlist(data) {
 								href="adminpage4.jsp">회원 정보 관리</a></li>
 							<li class="nav-item"><a class="nav-link"
 								href="adminpage5.jsp">대여소 추천</a></li>
+							<li class="nav-item"><a class="nav-link"
+								href="adminpage6.jsp">고객의 소리</a></li>
 						</ul>
 					</div>
 				</div>
@@ -166,31 +164,19 @@ function mypointlist(data) {
 			<section class="tm-banner">
 				<div class="tm-container-outer tm-banner-bg-mypage">
 					<div>
-
 						<form action="helmet.jsp" method="get"
 							class="tm-search-form-join tm-section-pad-3" id="mypage">
-							<div class="form-row-main tm-search-form-row">
-								<div id="mypage2"></div>
-							</div>
-
-							<div class="form-row tm-search-form-row">
-								<div
-									class="form-group tm-form-group tm-form-group-pad tm-form-group-2">
-									<label for="btnSubmit">&nbsp;</label>
-									<button type="button"
-										class="btn btn-primary tm-btn tm-btn-search text-uppercase"
-										id="btnwatch" onclick="mypointlistFn()">수정</button>
-									<button type="submit"
-										class="btn btn-primary tm-btn tm-btn-search text-uppercase"
-										id="btncancel" onclick="loginFn()">취소</button>
+							<form>
+								<div class="form-row-main tm-search-form-row">
+									<div id="contactuslist"></div>
 								</div>
-							</div>
+							</form>
 						</form>
-
-
 					</div>
 				</div>
 			</section>
+
+
 			<section class="p-5 tm-container-outer tm-bg-gray">
 				<div class="container">
 					<div class="row">

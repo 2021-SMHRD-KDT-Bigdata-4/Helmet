@@ -71,6 +71,7 @@ function rentalshoplist(data) {
        $("#adminpage2").append(view); 
     }                             
     
+     
 function loginFn() {
 	var memberid = $("#id").val();
 	var password = $("#pw").val();
@@ -149,8 +150,6 @@ function logoutFn() {
 				<div class="row tm-banner-row-mypage tm-banner-row-header-mypage">
 					<div class="tm-banner-header-mypage">
 						<ul class="navbar-nav-mypage ml-auto">
-							<li class="nav-item"><a class="nav-link"
-								href="adminpage.jsp">대여소별 안전모 현황</a></li>
 							<li class="nav-item"><a class="nav-link active"
 								href="adminpage2.jsp">대여소 관리 <span class="sr-only">(current)</span>
 							</a></li>
@@ -160,6 +159,8 @@ function logoutFn() {
 								href="adminpage4.jsp">회원 정보 관리</a></li>
 							<li class="nav-item"><a class="nav-link"
 								href="adminpage5.jsp">대여소 추천</a></li>
+							<li class="nav-item"><a class="nav-link"
+								href="adminpage6.jsp">고객의 소리</a></li>
 						</ul>
 					</div>
 				</div>

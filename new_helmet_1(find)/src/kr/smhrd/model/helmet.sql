@@ -64,7 +64,6 @@ CREATE TABLE rent (
     returnplaceName  VARCHAR(50),
     memberid     VARCHAR(50) NOT NULL,
     helmetid     VARCHAR(50) NOT NULL
- 
 );
 
 CREATE TABLE rentalshop (

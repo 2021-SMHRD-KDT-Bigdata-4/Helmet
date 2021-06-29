@@ -1,20 +1,11 @@
 package kr.smhrd.model;
 
 public class PointVO {
-	private String pointid;
 	private String earndate;
 	private String usedpoint;
 	private String memberid;
 	private String earnpoint;
 	private String useddate;
-
-	public String getPointid() {
-		return pointid;
-	}
-
-	public void setPointid(String pointid) {
-		this.pointid = pointid;
-	}
 
 	public String getEarndate() {
 		return earndate;

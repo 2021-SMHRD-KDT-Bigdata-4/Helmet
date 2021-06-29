@@ -10,6 +10,7 @@
 		<typeAlias type="kr.smhrd.model.RentVO" alias="rentVO" />
 	   <typeAlias type="kr.smhrd.model.HelmetVO" alias="helmetVO" />
 	   <typeAlias type="kr.smhrd.model.RentalshopVO" alias="rentalshopVO" />
+	   <typeAlias type="kr.smhrd.model.ContactusVO" alias="contactusVO" />
 	</typeAliases>
 	<environments default="development">
 		<environment id="development">

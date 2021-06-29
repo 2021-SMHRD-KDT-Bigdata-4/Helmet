@@ -26,6 +26,7 @@ public class PointlistController implements Controller {
 
 		Gson g = new Gson();
 		String plist = g.toJson(list);
+		
 		System.out.println(plist);
 		PrintWriter out = response.getWriter();
 		out.println(plist);

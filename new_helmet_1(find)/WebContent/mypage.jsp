@@ -118,12 +118,15 @@
 				<div class="row tm-banner-row-mypage tm-banner-row-header-mypage">
 					<div class="tm-banner-header-mypage">
 						<ul class="navbar-nav-mypage ml-auto">
-							<li class="nav-item"><a class="nav-link" href="mypage.jsp">내 정보</a></li>
+							<li class="nav-item"><a class="nav-link" href="mypage.jsp">내
+									정보</a></li>
 							<li class="nav-item"><a class="nav-link active"
 								href="mypage2.jsp">포인트 관리 <span class="sr-only">(current)</span>
 							</a></li>
+							<li class="nav-item"><a class="nav-link" href="mypage3.jsp">대여
+									내역</a></li>
 							<li class="nav-item"><a class="nav-link"
-								href="mypage3.jsp">대여 내역</a></li>
+								href="mypagereturn.jsp">헬멧 반납 </a></li>
 						</ul>
 					</div>
 				</div>
@@ -134,40 +137,42 @@
 					<div>
 
 						<form action="helmet.jsp" method="get"
-							class="tm-search-form-join tm-section-pad-3" id="mypage">
-							<div class="form-row tm-search-form-row">
-								<div
-									class="form-group tm-form-group tm-form-group-pad tm-form-group-1">
-									<label for="inputCity">ID</label> <input name="memberid"
-										readonly="readonly" type="text" class="form-control"
-										id="memberid" value="${sessionScope.loginVO.memberid}">
+							class="tm-search-form-member tm-section-pad-3" id="mypage">
+							<form>
+								<div class="form-row1 tm-search-form-row">
+									<div
+										class="form-group tm-form-group1 tm-form-group-pad tm-form-group-1">
+										<label for="inputCity">ID</label> <input name="memberid"
+											readonly="readonly" type="text" class="form-control"
+											id="memberid" value="${sessionScope.loginVO.memberid}">
+									</div>
+									<div
+										class="form-group tm-form-group1 tm-form-group-pad tm-form-group-1">
+										<label for="inputCity">Password</label> <input name="password"
+											type="text" class="form-control" id="password"
+											value="${sessionScope.loginVO.password}">
+									</div>
+									<div
+										class="form-group tm-form-group1 tm-form-group-pad tm-form-group-1">
+										<label for="inputCity">Name</label> <input name="membername"
+											type="text" class="form-control" id="membername"
+											value="${sessionScope.loginVO.membername}">
+									</div>
+									<div
+										class="form-group tm-form-group1 tm-form-group-pad tm-form-group-1">
+										<label for="inputCity">Age</label> <input name="memberage"
+											type="text" class="form-control" id="memberage"
+											value="${sessionScope.loginVO.memberage}">
+									</div>
+									<div
+										class="form-group tm-form-group1 tm-form-group-pad tm-form-group-1">
+										<label for="inputCity">Phone</label> <input name="memberphone"
+											type="text" class="form-control" id="memberphone"
+											value="${sessionScope.loginVO.memberphone}">
+									</div>
+									<div class="form-group tm-form-group tm-form-group-1"></div>
 								</div>
-								<div
-									class="form-group tm-form-group tm-form-group-pad tm-form-group-1">
-									<label for="inputCity">Password</label> <input name="password"
-										type="text" class="form-control" id="password"
-										value="${sessionScope.loginVO.password}">
-								</div>
-								<div
-									class="form-group tm-form-group tm-form-group-pad tm-form-group-1">
-									<label for="inputCity">Name</label> <input name="membername"
-										type="text" class="form-control" id="membername"
-										value="${sessionScope.loginVO.membername}">
-								</div>
-								<div
-									class="form-group tm-form-group tm-form-group-pad tm-form-group-1">
-									<label for="inputCity">Age</label> <input name="memberage"
-										type="text" class="form-control" id="memberage"
-										value="${sessionScope.loginVO.memberage}">
-								</div>
-								<div
-									class="form-group tm-form-group tm-form-group-pad tm-form-group-1">
-									<label for="inputCity">Phone</label> <input name="memberphone"
-										type="text" class="form-control" id="memberphone"
-										value="${sessionScope.loginVO.memberphone}">
-								</div>
-								<div class="form-group tm-form-group tm-form-group-1"></div>
-							</div>
+							</form>
 							<div class="form-row tm-search-form-row">
 								<div
 									class="form-group tm-form-group tm-form-group-pad tm-form-group-2">

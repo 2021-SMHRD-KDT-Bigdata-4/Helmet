@@ -10,11 +10,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 
+import kr.smhrd.model.ContactusVO;
 import kr.smhrd.model.HelmetVO;
 import kr.smhrd.model.LoginDAO;
-import kr.smhrd.model.PointVO;
+import kr.smhrd.model.RentVO;
 
-public class HelmetlistController implements Controller {
+public class ContactusController implements Controller {
 
 	@Override
 	public String requestHandler(HttpServletRequest request, HttpServletResponse response)
@@ -22,11 +23,11 @@ public class HelmetlistController implements Controller {
 
 		System.out.println("접속성공?");
 		LoginDAO dao = new LoginDAO();
-		List<HelmetVO> list = dao.helmetlist();
+		List<ContactusVO> list = dao.contactuslist();
 
 		Gson g = new Gson();
 		String hlist = g.toJson(list);
-		System.out.println(hlist);
+		response.setContentType("text/html;charset=euc-kr");
 		PrintWriter out = response.getWriter();
 		out.println(hlist);
 
